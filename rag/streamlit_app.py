@@ -12,15 +12,15 @@ import spacy
 from spacy.cli import download as spacy_download
 
 # Function to load spaCy model
-@st.cache_resource
-def load_spacy_model():
-    model_name = "en_core_web_sm"
-    try:
-        nlp = spacy.load(model_name)
-    except OSError:
-        spacy_download(model_name)
-        nlp = spacy.load(model_name)
-    return nlp
+# @st.cache_resource
+# def load_spacy_model():
+#     model_name = "en_core_web_sm"
+#     try:
+#         nlp = spacy.load(model_name)
+#     except OSError:
+#         spacy_download(model_name)
+#         nlp = spacy.load(model_name)
+#     return nlp
 
 # Function to load documents from GitHub
 @st.cache_data
@@ -91,7 +91,7 @@ def main():
         st.write("Ensure your `secrets.toml` is configured properly.")
     
     # Load spaCy model
-    nlp = load_spacy_model()
+    # nlp = load_spacy_model()
     
     # Load and process documents
     with st.spinner("📥 Loading documents from GitHub..."):
