@@ -25,14 +25,24 @@ from spacy.cli import download as spacy_download
 # Function to load documents from GitHub
 @st.cache_data
 def load_documents():
+    try:
+        github_secrets = st.secrets["github"]
+    except KeyError:
+        st.error("GitHub access token is missing in the secrets configuration.")
+        return []
+
     loader = GithubFileLoader(
         repo="panaversity/learn-applied-generative-ai-fundamentals",
         branch="main",
-        access_token=st.secrets["github"]["access_token"],
+        access_token=github_secrets["access_token"],
         github_api_url="https://api.github.com",
         file_filter=lambda file_path: file_path.endswith(".md")
     )
-    docs = loader.load()
+    try:
+        docs = loader.load()
+    except Exception as e:
+        st.error(f"Failed to load documents from GitHub: {e}")
+        return []
     return docs
 
 # Function to split documents
