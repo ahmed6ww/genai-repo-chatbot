@@ -39,6 +39,7 @@ def load_documents():
         file_filter=lambda file_path: file_path.endswith(".md")
     )
     try:
+        
         docs = loader.load()
     except Exception as e:
         st.error(f"Failed to load documents from GitHub: {e}")
