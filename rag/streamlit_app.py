@@ -32,7 +32,7 @@ def load_documents():
         return []
 
     loader = GithubFileLoader(
-        repo="panaversity/learn-applied-generative-ai-fundamentals",
+        repo="panaversity/learn-agentic-ai",
         branch="main",
         access_token=github_secrets["access_token"],
         github_api_url="https://api.github.com",
@@ -94,7 +94,7 @@ def create_rag_chain(retriever, llm):
 
 def main():
     st.set_page_config(page_title="LangChain QA App", layout="wide")
-    st.title("📚 QA with panaversity 'learn applied generative ai' repository")
+    st.title("📚 QA with panaversity's 'learn-agentic-ai' repository")
     
     # Sidebar for app settings
     st.sidebar.header("🔧 Settings")
